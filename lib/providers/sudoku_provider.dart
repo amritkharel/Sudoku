@@ -1,5 +1,3 @@
-// providers/sudoku_provider.dart
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../common/constants.dart';
@@ -7,24 +5,20 @@ import '../core/models/sudoku_model.dart';
 import '../utils/sudoku.dart';
 import 'difficulty_level_provider.dart';
 
-// Sudoku Provider
 final sudokuProvider = StateNotifierProvider<SudokuNotifier, SudokuBoard>(
         (ref) => SudokuNotifier(ref));
 
-// Mistake Limit Provider
 final mistakeLimitProvider = StateProvider<bool>((ref) => false);
 
-// Mistakes Provider
 final mistakesProvider = StateProvider<int>((ref) => 0);
 
-// Puzzle Completed Provider
 final puzzleCompletedProvider = StateProvider<bool>((ref) => false);
 
 class SudokuNotifier extends StateNotifier<SudokuBoard> {
   SudokuNotifier(this.ref)
       : super(
     SudokuBoard(
-      cells: [], // Will be initialized later
+      cells: [],
       numberUsage: List.filled(10, 0),
       selectedRow: -1,
       selectedCol: -1,
@@ -47,7 +41,7 @@ class SudokuNotifier extends StateNotifier<SudokuBoard> {
     final difficultyLevel = ref.read(difficultyLevelProvider);
     final emptyCells = difficultyEmptyCells[difficultyLevel]!;
 
-    var sudokuPuzzle = await SudokuGenerator.generatePuzzle(emptyCells: emptyCells);
+    var sudokuPuzzle = await SudokuGenerator().generatePuzzle(emptyCells: emptyCells);
     _solutionGrid = sudokuPuzzle.solution;
 
     List<List<SudokuCell>> cells = List.generate(9, (row) {

@@ -1,5 +1,3 @@
-// core/models/sudoku_model.dart
-
 class SudokuCell {
   final int row;
   final int col;
@@ -31,4 +29,3 @@ class SudokuBoard {
     this.selectedCol = -1,
   });
 }
-

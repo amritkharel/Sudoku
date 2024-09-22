@@ -1,5 +1,3 @@
-// ui/widgets/number_pad.dart
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -33,7 +31,6 @@ class NumberPad extends ConsumerWidget {
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  // Main number centered
                   Text(
                     number.toString(),
                     style: const TextStyle(fontSize: 20),

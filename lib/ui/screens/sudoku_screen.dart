@@ -198,7 +198,10 @@ class _SudokuScreenState extends ConsumerState<SudokuScreen>
                           child: child,
                         );
                       },
-                      child: const SudokuGrid(),
+                      child: const Padding(
+                        padding: EdgeInsets.only(left: 5.0, right: 5.0),
+                        child: SudokuGrid(),
+                      ),
                     ),
                   ),
                 ),

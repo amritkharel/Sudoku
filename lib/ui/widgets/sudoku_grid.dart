@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/models/sudoku_model.dart';
 import '../../providers/sudoku_provider.dart';
 
-
 class SudokuGrid extends ConsumerWidget {
   const SudokuGrid({super.key});
 
@@ -56,8 +55,8 @@ class SudokuPainter extends CustomPainter {
       ..strokeWidth = 1;
 
     Paint boldGridPaint = Paint()
-      ..color = Colors.black
-      ..strokeWidth = 2;
+      ..color = Colors.brown
+      ..strokeWidth = 4;
 
     Paint selectedCellPaint = Paint()
       ..color = Colors.lightBlueAccent.withOpacity(0.5);

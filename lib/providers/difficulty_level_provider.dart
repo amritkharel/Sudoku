@@ -1,5 +1,3 @@
-// providers/difficulty_level_provider.dart
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,7 +13,7 @@ class DifficultyLevelNotifier extends StateNotifier<DifficultyLevel> {
     final levelString = prefs.getString('difficulty_level');
     if (levelString != null) {
       state = DifficultyLevel.values.firstWhere(
-              (e) => e.toString() == levelString,
+          (e) => e.toString() == levelString,
           orElse: () => DifficultyLevel.easy);
     }
   }
@@ -27,6 +25,7 @@ class DifficultyLevelNotifier extends StateNotifier<DifficultyLevel> {
   }
 }
 
-final difficultyLevelProvider = StateNotifierProvider<DifficultyLevelNotifier, DifficultyLevel>(
-      (ref) => DifficultyLevelNotifier(),
+final difficultyLevelProvider =
+    StateNotifierProvider<DifficultyLevelNotifier, DifficultyLevel>(
+  (ref) => DifficultyLevelNotifier(),
 );
