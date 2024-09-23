@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -24,12 +25,14 @@ class SudokuAppBar extends ConsumerWidget implements PreferredSizeWidget {
 
     return AppBar(
       centerTitle: true,
-      leadingWidth: 120,
+      leadingWidth: kIsWeb ? 120:100,
+      elevation: 2,
       leading: Padding(
         padding: const EdgeInsets.only(left: 30),
         child: DropdownButtonHideUnderline(
           child: DropdownButton<DifficultyLevel>(
             value: difficultyLevel,
+            borderRadius: BorderRadius.circular(10.0),
             onChanged: (DifficultyLevel? newLevel) async {
               if (newLevel != null) {
                 await difficultyLevelNotifier.setDifficultyLevel(newLevel);

@@ -6,9 +6,9 @@ enum DifficultyLevel {
 }
 
 const Map<DifficultyLevel, int> difficultyEmptyCells = {
-  DifficultyLevel.easy: 43,
-  DifficultyLevel.medium: 47,
-  DifficultyLevel.difficult: 53,
+  DifficultyLevel.easy: 45,
+  DifficultyLevel.medium: 50,
+  DifficultyLevel.difficult: 55,
   DifficultyLevel.extreme: 60,
 };
 

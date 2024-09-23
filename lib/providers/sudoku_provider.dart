@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../common/constants.dart';
 import '../core/models/sudoku_model.dart';
@@ -24,9 +25,9 @@ class SudokuNotifier extends StateNotifier<SudokuBoard> {
       selectedCol: -1,
     ),
   ) {
-    _initializePuzzle();
+// Watch for changes in difficulty level, and initialize puzzle when it changes
+    _initializePuzzle(); // Initialize puzzle with the updated difficulty level}
   }
-
   final Ref ref;
   late SudokuBoard _initialBoard;
   int selectedRow = -1;
@@ -38,8 +39,18 @@ class SudokuNotifier extends StateNotifier<SudokuBoard> {
   int get mistakes => _mistakes;
 
   void _initializePuzzle() async {
-    final difficultyLevel = ref.read(difficultyLevelProvider);
-    final emptyCells = difficultyEmptyCells[difficultyLevel]!;
+    DifficultyLevel difficultyLevel;
+    int emptyCells ;
+    final prefs = await SharedPreferences.getInstance();
+    final levelString = prefs.getString('difficulty_level');
+    if (levelString != null) {
+      difficultyLevel = DifficultyLevel.values.firstWhere(
+              (e) => e.toString() == levelString,
+          orElse: () => DifficultyLevel.easy);
+    }else{
+      difficultyLevel = DifficultyLevel.easy;
+    }
+     emptyCells = difficultyEmptyCells[difficultyLevel]!;
 
     var sudokuPuzzle = await SudokuGenerator().generatePuzzle(emptyCells: emptyCells);
     _solutionGrid = sudokuPuzzle.solution;

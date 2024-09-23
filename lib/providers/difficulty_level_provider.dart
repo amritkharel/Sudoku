@@ -15,6 +15,8 @@ class DifficultyLevelNotifier extends StateNotifier<DifficultyLevel> {
       state = DifficultyLevel.values.firstWhere(
           (e) => e.toString() == levelString,
           orElse: () => DifficultyLevel.easy);
+    }else{
+      state = DifficultyLevel.easy;
     }
   }
 
